@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Taxa Metabólica Basal</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        display: contents;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 20;
+    }
+    
+    h1 {
+        color: #4CAF50;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    
+    form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+    
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    button {
+        background: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+    
+    button:hover {
+        background: #45a049;
+    }
+    
+    p#result {
+        margin-top: 15px;
+        font-size: 18px;
+    }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Taxa Metabólica Basal</h1>
+    <form id="tmbForm">
+        <label for="weight">Peso (kg):</label>
+        <input type="number" id="weight" name="weight" required><br>
+        <label for="height">Altura (cm):</label>
+        <input type="number" id="height" name="height" required><br>
+        <label for="age">Idade:</label>
+        <input type="number" id="age" name="age" required><br>
+        <label for="gender">Gênero:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Masculino</option>
+            <option value="female">Feminino</option>
+        </select><br>
+        <button type="submit">Calcular</button>
+    </form>
+    <p id="result"></p>
+    
+    <script>
+        document.getElementById('tmbForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let weight = document.getElementById('weight').value;
+            let height = document.getElementById('height').value;
+            let age = document.getElementById('age').value;
+            let gender = document.getElementById('gender').value;
+            let tmb;
+            
+            if(gender === 'male') {
+                tmb = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+            } else {
+                tmb = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            }
+
+            document.getElementById('result').innerText = 'Sua TMB é ' + tmb.toFixed(2) + ' calorias por dia';
+        });
+    </script>
+</body>
+</html>
